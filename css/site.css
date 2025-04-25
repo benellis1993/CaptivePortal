@@ -1,0 +1,57 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: white;
+}
+
+header {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.logo {
+    width: 150px;
+    margin-bottom: 10px;
+}
+
+.tos-section, .email-section, .promo-section {
+    margin-bottom: 25px;
+}
+
+.promo-box {
+    background-color: #eeeeee;
+    padding: 10px;
+    margin-top: 10px;
+    border-left: 5px solid #800000;
+}
+
+.connect-button {
+    text-align: center;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #800000;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #a00000;
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 0.9em;
+    color: #777;
+}
