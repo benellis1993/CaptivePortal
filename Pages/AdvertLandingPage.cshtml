@@ -1,0 +1,90 @@
+@page
+@model AdvertLandingPageModel
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml"; // Ensure this matches your layout file
+    ViewData["Title"] = "Advertisements";
+}
+
+<div class="advert-container"> <!-- Updated class for full-width layout -->
+    <h1 class="welcome-text">Explore Our Programs and Offerings</h1> <!-- Match the heading style -->
+    <div class="advert-grid">
+        @foreach (var ad in Model.Advertisements)
+        {
+            <div class="advert-card">
+                <img src="@ad.ImageUrl" alt="@ad.Title" class="advert-image" />
+                <h2 class="advert-heading">@ad.Title</h2>
+                <p class="advert-description">@ad.Description</p>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    :root {
+        --maroon: #642032;
+        --maroon-light: #7A2A3F;
+        --white: #FFFFFF;
+        --gray-light: #F5F5F5;
+        --gray: #E0E0E0;
+    }
+
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    body {
+        background: linear-gradient(135deg, var(--maroon) 0%, var(--maroon-light) 100%);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        min-height: 100vh;
+    }
+
+    .advert-container {
+        width: 100%;
+        max-width: 1200px; /* Adjust as needed for responsiveness */
+        margin: 2rem auto;
+        padding: 0 20px;
+    }
+
+    .welcome-text {
+        color: var(--white); /* Match the Index page */
+        text-align: center;
+        font-size: 32px; /* Slightly larger for emphasis */
+        margin-bottom: 30px;
+        font-weight: 700;
+    }
+
+    .advert-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .advert-card {
+        background: var(--gray-light);
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .advert-image {
+        width: 100%;
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+
+    .advert-heading {
+        font-size: 18px;
+        color: var(--maroon);
+        margin: 10px 0;
+        font-weight: 600;
+    }
+
+    .advert-description {
+        font-size: 14px;
+        color: #333;
+    }
+</style>
