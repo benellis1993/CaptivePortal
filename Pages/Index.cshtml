@@ -33,7 +33,7 @@
                     </div>
                     <div class="form-group terms-checkbox">
                         <label class="checkbox-container">
-                            <input type="checkbox" required>
+                            <input type="checkbox" id="termsCheckbox" required>
                             <span class="checkmark"></span>
                             <span class="checkbox-text">I accept the Terms of Service</span>
                         </label>
@@ -41,7 +41,7 @@
                             <a href="/TermsOfService" class="terms-link" target="_blank">Read our Terms of Service</a>
                         </small>
                     </div>
-                    <button type="submit" class="login-button">Connect to Network</button>
+                    <button id="connectButton" type="submit" class="login-button" disabled title="Accept Terms of Service to continue.">Connect to Network</button>
                 </form>
             </div>
         </div>
@@ -290,4 +290,26 @@
     .terms-link:hover {
         text-decoration: underline;
     }
+
+    .login-button:disabled {
+    background-color: #cccccc; /* Light gray */
+    cursor: not-allowed;       /* Shows a forbidden cursor */
+    color: #666666;            /* Slightly dim text */
+}
 </style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var checkbox = document.getElementById('termsCheckbox');
+        var button = document.getElementById('connectButton');
+
+        checkbox.addEventListener('change', function() {
+            button.disabled = !checkbox.checked;
+            if (checkbox.checked) {
+                button.removeAttribute('title');
+            } else {
+                button.setAttribute('title', 'Accept Terms of Service to continue.');
+            }
+        });
+    });
+</script>
