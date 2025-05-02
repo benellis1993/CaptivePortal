@@ -1,8 +1,10 @@
 ﻿@page
 @model naboo_final_project.Pages.IndexModel
+
 @{
     ViewData["Title"] = "Welcome to WT Network";
 }
+<link rel="stylesheet" href="~/css/login.css" /> 
 
 <div class="login-container">
     <div class="login-box">
@@ -17,19 +19,19 @@
             </div>
             <div class="card-body">
                 <form class="login-form" method="post">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+
                     <div class="form-group">
-                        <input type="email" 
-                               class="form-control" 
-                               placeholder="Enter your email address" 
+                        <label asp-for="UserEmail">Email Address</label>
+                        <input type="email"
+                               class="form-control"
+                               placeholder="Enter your email address"
                                title="Please enter a valid email address"
-                               required>
+                               required {# HTML5 required attribute for basic client-side check #}
+                               asp-for="UserEmail">
+
                         <small class="form-text">Enter your email address to connect</small>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" 
-                               class="form-control" 
-                               placeholder="Password" 
-                               required>
+                        <span asp-validation-for="UserEmail" class="text-danger"></span>
                     </div>
                     <div class="form-group terms-checkbox">
                         <label class="checkbox-container">
@@ -51,6 +53,36 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const termsCheckbox = document.getElementById('termsCheckbox');
+            const connectButton = document.getElementById('connectButton');
+
+            // Initial check in case the page is cached with the checkbox checked
+            connectButton.disabled = !termsCheckbox.checked;
+             if (termsCheckbox.checked) {
+                connectButton.removeAttribute('title');
+            } else {
+                 connectButton.setAttribute('title', 'Accept Terms of Service to continue.');
+            }
+
+
+            termsCheckbox.addEventListener('change', function () {
+                connectButton.disabled = !this.checked;
+                if (this.checked) {
+                    connectButton.removeAttribute('title');
+                } else {
+                    connectButton.setAttribute('title', 'Accept Terms of Service to continue.');
+                }
+            });
+        });
+    </script>
+}
+
 
 <style>
     :root {

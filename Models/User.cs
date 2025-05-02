@@ -13,21 +13,21 @@ namespace NabooFinalProject.Models
         public int UserId { get; set; }
 
         [Required]
-        [Column("FirstName")] // Explicitly map to the 'FirstName' column name
-        public string ? FirstName { get; set; }
-
-        [Required]
-        [Column("LastName")] // Explicitly map to the 'LastName' column name
-        public string ? LastName { get; set; }
-
-        [Required]
+        [EmailAddress]
         [Column("Email")] // Explicitly map to the 'Email' column name
         public string ? Email { get; set; }
 
-        [Column("IPAddress")] // Explicitly map to the 'IPAddress' column name
-        public string ? IPAddress { get; set; }
-
         [Column("CreatedAt")] // Explicitly map to the 'CreatedAt' column name
         public DateTime CreatedAt { get; set; }
+
+        // Add properties for email validation
+        [Column("IsEmailConfirmed")]
+        public bool IsEmailConfirmed { get; set; } = false; // To track if the email is validated
+
+        [Column("EmailConfirmationToken")]
+        public string? EmailConfirmationToken { get; set; } // To store the unique token
+
+        [Column("EmailConfirmationTokenExpires")]
+        public DateTime? EmailConfirmationTokenExpires { get; set; } // To store token expiration time
     }
 }
