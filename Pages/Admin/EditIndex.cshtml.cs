@@ -2,40 +2,40 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.IO;
 
-namespace naboo_final_project.Pages.Admin
+namespace naboo_final_project.Pages.Admin;
+
+public class EditIndexModel : PageModel
 {
-    public class EditIndexModel : PageModel
+    [BindProperty]
+    public string WelcomeText { get; set; } = string.Empty;
+
+    [BindProperty]
+    public string TermsContent { get; set; } = string.Empty;
+
+    private readonly string _welcomeTextFilePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "WelcomeText.txt");
+    private readonly string _termsFilePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "TermsOfService.txt");
+
+    public void OnGet()
     {
-        [BindProperty]
-        public string WelcomeText { get; set; }
+        // Load WelcomeText from file
+        WelcomeText = System.IO.File.Exists(_welcomeTextFilePath) 
+            ? System.IO.File.ReadAllText(_welcomeTextFilePath) 
+            : "Welcome to WT Network";
 
-        [BindProperty]
-        public string TermsContent { get; set; }
+        // Load TermsContent from file
+        TermsContent = System.IO.File.Exists(_termsFilePath) 
+            ? System.IO.File.ReadAllText(_termsFilePath) 
+            : "Terms Not Available";
+    }
 
-        public void OnGet()
-        {
-            // Load Welcome Text (mocked for now)
-            WelcomeText = "Welcome to the Wi-Fi portal!";
+    public IActionResult OnPost()
+    {
+        // Save WelcomeText to file
+        System.IO.File.WriteAllText(_welcomeTextFilePath, WelcomeText);
 
-            // Load Terms of Service content
-            var termsFilePath = Path.Combine(Directory.GetCurrentDirectory(), "Pages", "TermsOfService.txt");
-            if (System.IO.File.Exists(termsFilePath))
-            {
-                TermsContent = System.IO.File.ReadAllText(termsFilePath);
-            }
-        }
+        // Save TermsContent to file
+        System.IO.File.WriteAllText(_termsFilePath, TermsContent);
 
-        public IActionResult OnPost()
-        {
-            // Save Welcome Text (mocked for now)
-            // In a real application, this would save to a database or configuration file
-            WelcomeText = WelcomeText;
-
-            // Save Terms of Service content
-            var termsFilePath = Path.Combine(Directory.GetCurrentDirectory(), "Pages", "TermsOfService.txt");
-            System.IO.File.WriteAllText(termsFilePath, TermsContent);
-
-            return RedirectToPage("/Index");
-        }
+        return RedirectToPage("/Index");
     }
 }

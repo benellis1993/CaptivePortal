@@ -18,7 +18,7 @@
                     <ol>
                         @for (int i = 1; i < termsLines.Length - 1; i++) // Render all but the last line as list items
                         {
-                            <li>@termsLines[i]</li>
+                            <li>@termsLines[i].Substring(termsLines[i].IndexOf(' ') + 1)</li> <!-- Remove the leading number -->
                         }
                     </ol>
                     <p>@termsLines[^1]</p> <!-- Display the last line as a separate paragraph -->

@@ -1,23 +1,19 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.IO;
 
-namespace NabooFinalProject.Pages
-{
-    public class TermsOfServiceModel : PageModel
-    {
-        public string TermsContent { get; set; }
+namespace NabooFinalProject.Pages;
 
-        public void OnGet()
-        {
-            var termsFilePath = Path.Combine(Directory.GetCurrentDirectory(), "Pages", "TermsOfService.txt");
-            if (System.IO.File.Exists(termsFilePath))
-            {
-                TermsContent = System.IO.File.ReadAllText(termsFilePath);
-            }
-            else
-            {
-                TermsContent = "Terms of Service content is not available.";
-            }
-        }
+public class TermsOfServiceModel : PageModel
+{
+    public string TermsContent { get; set; } = string.Empty;
+
+    private readonly string _termsFilePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "TermsOfService.txt");
+
+    public void OnGet()
+    {
+        // Load TermsContent from file
+        TermsContent = System.IO.File.Exists(_termsFilePath) 
+            ? System.IO.File.ReadAllText(_termsFilePath) 
+            : "Terms of Service content is not available.";
     }
 }
