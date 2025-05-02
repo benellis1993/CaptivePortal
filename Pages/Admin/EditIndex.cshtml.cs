@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace naboo_final_project.Pages.Admin;
 
+[Authorize(Roles = "Admin")] // Only users with the "Admin" role can access this page
 public class EditIndexModel : PageModel
 {
     [BindProperty]

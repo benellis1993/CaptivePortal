@@ -1,0 +1,28 @@
+@page
+@model NabooFinalProject.Pages.AdminLoginModel
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml"; // Use the same layout as the Index page
+    ViewData["Title"] = "Admin Login";
+}
+
+<div class="background" style="background-image: url('@Model.BackgroundImageUrl');">
+    <h1>@ViewData["Title"]</h1>
+    <p>Welcome to the Admin Portal!</p>
+</div>
+
+<form method="post">
+    <div class="form-group">
+        <label for="Email">Email:</label>
+        <input type="email" id="Email" name="Email" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="Password">Password:</label>
+        <input type="password" id="Password" name="Password" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <p class="text-danger">@Model.ErrorMessage</p>
+}
