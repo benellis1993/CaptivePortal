@@ -15,5 +15,10 @@
         <label for="termsContent">Terms of Service Content</label>
         <textarea id="termsContent" name="TermsContent" class="form-control" rows="10">@Model.TermsContent</textarea>
     </div>
+    <div class="form-group">
+        <label for="uploadedImage">Upload New Logo</label>
+        <input id="uploadedImage" name="UploadedImage" class="form-control" type="file" accept="image/*" />
+        <small class="form-text text-muted">Choose an image file to upload as the new logo.</small>
+    </div>
     <button type="submit" class="btn btn-primary">Save Changes</button>
 </form>

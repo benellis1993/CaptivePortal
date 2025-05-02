@@ -1,5 +1,5 @@
 ﻿@page
-@model IndexModel
+@model naboo_final_project.Pages.IndexModel
 @{
     ViewData["Title"] = "Welcome to WT Network";
 }
@@ -7,7 +7,7 @@
 <div class="login-container">
     <div class="login-box">
         <div class="logo-container">
-            <img src="/images/WT-logo.jpg" alt="WT Logo" class="logo">
+            <img src="@Model.ImagePath" alt="WT Logo" class="logo">
         </div>
         <h1 class="welcome-text">@Model.WelcomeText</h1>
         <div class="login-card">
