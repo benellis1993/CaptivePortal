@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using NabooFinalProject.Models; 
+using naboo_final_project.Models; 
 
 var builder = WebApplication.CreateBuilder(args);
 

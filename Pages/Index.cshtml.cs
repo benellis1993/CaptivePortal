@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using NabooFinalProject.Models; // Ensure this matches your User and DbContext files
+using naboo_final_project.Models; // Ensure this matches your User and DbContext files
 using System.Threading.Tasks;
 using System;
 using Microsoft.EntityFrameworkCore;

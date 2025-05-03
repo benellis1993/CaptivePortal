@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using NabooFinalProject.Models;
+using naboo_final_project.Models;
 
 #nullable disable
 
@@ -20,7 +20,7 @@ namespace naboo_final_project.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.4");
 
-            modelBuilder.Entity("NabooFinalProject.Models.User", b =>
+            modelBuilder.Entity("naboo_final_project.Models.User", b =>
                 {
                     b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()

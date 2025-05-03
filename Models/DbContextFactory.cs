@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 
-namespace NabooFinalProject.Models 
+namespace naboo_final_project.Models 
 {
     public class UsersDbContextFactory : IDesignTimeDbContextFactory<UsersDbContext>
     {

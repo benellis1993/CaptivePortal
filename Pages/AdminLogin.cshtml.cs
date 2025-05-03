@@ -1,10 +1,10 @@
-using NabooFinalProject.Models;
+using naboo_final_project.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Claims;
 
-namespace NabooFinalProject.Pages;
+namespace naboo_final_project.Pages;
 
 public class AdminLoginModel : PageModel
 {
@@ -15,7 +15,7 @@ public class AdminLoginModel : PageModel
     public string? Password { get; set; }
 
     public string? ErrorMessage { get; set; }
-    public string? BackgroundImageUrl { get; set; }
+    public string? ImagePath { get; set; } = "/images/default.jpg";
 
     private readonly UsersDbContext _dbContext;
 
@@ -26,8 +26,8 @@ public class AdminLoginModel : PageModel
 
     public void OnGet()
     {
-        // Set the background image URL (replace with your logic)
-        BackgroundImageUrl = "/images/admin-background.jpg";
+        // Set the image path (replace with your logic)
+        ImagePath = "/images/admin-background.jpg";
     }
 
     public async Task<IActionResult> OnPostAsync()

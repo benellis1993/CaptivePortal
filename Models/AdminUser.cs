@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace NabooFinalProject.Models
+namespace naboo_final_project.Models
 {
     public class AdminUser
     {

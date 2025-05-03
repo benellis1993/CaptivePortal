@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.IO;
 
-namespace NabooFinalProject.Pages;
+namespace naboo_final_project.Pages;
 
 public class TermsOfServiceModel : PageModel
 {

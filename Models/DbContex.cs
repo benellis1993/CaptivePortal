@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace NabooFinalProject.Models
+namespace naboo_final_project.Models
 {
     public class UsersDbContext : DbContext
     {
