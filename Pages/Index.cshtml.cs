@@ -60,6 +60,11 @@ namespace naboo_final_project.Pages
             // Check if the model state is valid based on data annotations (Required, EmailAddress)
             if (!ModelState.IsValid)
             {
+                // Reload ImagePath to ensure it is available when returning the page
+                ImagePath = System.IO.File.Exists(_imagePathFilePath)
+                    ? System.IO.File.ReadAllText(_imagePathFilePath)
+                    : "/images/default.jpg";
+                
                 // If validation fails, return the same page with validation errors
                 return Page();
             }
@@ -82,6 +87,10 @@ namespace naboo_final_project.Pages
             else if (user.IsEmailConfirmed)
             {
                 // If user exists and email is already confirmed, we can redirect them to landing page
+                ImagePath = System.IO.File.Exists(_imagePathFilePath)
+                    ? System.IO.File.ReadAllText(_imagePathFilePath)
+                    : "/images/default.jpg";
+
                 ModelState.AddModelError(string.Empty, "This email address is already confirmed.");
                 return Page();
             }
@@ -106,6 +115,12 @@ namespace naboo_final_project.Pages
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error sending email confirmation email to {Email}", user.Email);
+                
+                // Reload ImagePath in case of an error
+                ImagePath = System.IO.File.Exists(_imagePathFilePath)
+                    ? System.IO.File.ReadAllText(_imagePathFilePath)
+                    : "/images/default.jpg";
+
                 ModelState.AddModelError(string.Empty, "Error sending confirmation email. Please try again later.");
                 return Page();
             }
