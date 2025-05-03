@@ -1,0 +1,62 @@
+@page
+@model naboo_final_project.Pages.Admin.EditFailedAuthenticationPageModel
+@{
+    ViewData["Title"] = "Edit Failed Authentication Page";
+}
+
+<div class="container mt-4">
+    <h1>Edit Failed Authentication Page</h1>
+    <div class="card">
+        <div class="card-body">
+            <form method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="PageContent.Title">Page Title</label>
+                    <input asp-for="PageContent.Title" class="form-control" />
+                    <span asp-validation-for="PageContent.Title" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="PageContent.HeaderText">Header Text</label>
+                    <input asp-for="PageContent.HeaderText" class="form-control" />
+                    <span asp-validation-for="PageContent.HeaderText" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="PageContent.MainContent">Main Content</label>
+                    <textarea asp-for="PageContent.MainContent" class="form-control" rows="5"></textarea>
+                    <span asp-validation-for="PageContent.MainContent" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="PageContent.ImagePath">Image Path</label>
+                    <input asp-for="PageContent.ImagePath" class="form-control" />
+                    <span asp-validation-for="PageContent.ImagePath" class="text-danger"></span>
+                    <small class="form-text text-muted">Enter the path to the image file (e.g., /images/error.jpg)</small>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="PageContent.TermsLink">Terms of Service Link</label>
+                    <input asp-for="PageContent.TermsLink" class="form-control" />
+                    <span asp-validation-for="PageContent.TermsLink" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="PageContent.TermsContent">Terms of Service Content</label>
+                    <textarea asp-for="PageContent.TermsContent" class="form-control" rows="10"></textarea>
+                    <span asp-validation-for="PageContent.TermsContent" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <a asp-page="/Admin/Index" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+} 

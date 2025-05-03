@@ -1,0 +1,36 @@
+@page
+@model naboo_final_project.Pages.Admin.AdminDashboardModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container mt-4">
+    <h1>Admin Dashboard</h1>
+    
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Page Management</h5>
+                </div>
+                <div class="card-body">
+                    <div class="list-group">
+                        <a asp-page="/Admin/EditFailedAuthenticationPage" class="list-group-item list-group-item-action">
+                            <i class="fas fa-edit me-2"></i>Edit Failed Authentication Page
+                        </a>
+                        <a asp-page="/Admin/EditIndex" class="list-group-item list-group-item-action">
+                            <i class="fas fa-edit me-2"></i>Edit Home Page
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
