@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using NabooFinalProject.Models;
+using naboo_final_project.Models;
 using System.Threading.Tasks;
 using System;
 using Microsoft.EntityFrameworkCore;

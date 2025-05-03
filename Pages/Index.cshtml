@@ -1,5 +1,6 @@
 ﻿@page
-@model naboo_final_project.Pages.IndexModel 
+@model naboo_final_project.Pages.IndexModel
+
 @{
     ViewData["Title"] = "Welcome to WT Network";
 }
@@ -8,9 +9,9 @@
 <div class="login-container">
     <div class="login-box">
         <div class="logo-container">
-            <img src="/images/WT-logo.jpg" alt="WT Logo" class="logo">
+            <img src="@Model.ImagePath" alt="WT Logo" class="logo">
         </div>
-        <h1 class="welcome-text">Welcome to WT Network</h1>
+        <h1 class="welcome-text">@Model.WelcomeText</h1>
         <div class="login-card">
             <div class="card-header">
                 <h2>Network Access</h2>
@@ -39,7 +40,7 @@
                             <span class="checkbox-text">I accept the Terms of Service</span>
                         </label>
                         <small class="form-text">
-                            <a href="/TermsOfService" class="terms-link" target="_blank">Read our Terms of Service</a>
+                            <a href="@Model.TermsLink" class="terms-link" target="_blank">Read our Terms of Service</a>
                         </small>
                     </div>
                     <button id="connectButton" type="submit" class="login-button" disabled title="Accept Terms of Service to continue.">Connect to Network</button>

@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using NabooFinalProject.Models; // Make sure this namespace matches your User and DbContext files
+using naboo_final_project.Models; // Ensure this matches your User and DbContext files
 using System.Threading.Tasks;
 using System;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +10,7 @@ using System.Net; // For network credentials
 using Microsoft.Extensions.Configuration; // To read configuration for email settings
 using System.Text.Encodings.Web; // For encoding URLs
 using System.ComponentModel.DataAnnotations; // For data annotations like Required and EmailAddress
+using System.IO;
 
 namespace naboo_final_project.Pages
 {
@@ -19,7 +20,14 @@ namespace naboo_final_project.Pages
         private readonly UsersDbContext _context; // Inject your database context
         private readonly IConfiguration _configuration; // Inject configuration to read email settings
 
-        //Bind the email input from the form to this property
+        public string WelcomeText { get; set; } = string.Empty; // Initialize to avoid null warnings
+        public string TermsLink { get; set; } = string.Empty;  // Initialize to avoid null warnings
+        public string ImagePath { get; set; } = string.Empty;  // Initialize to avoid null warnings
+
+        private readonly string _welcomeTextFilePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "WelcomeText.txt");
+        private readonly string _imagePathFilePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "ImagePath.txt");
+
+        // Bind the email input from the form to this property
         [BindProperty]
         [Required(ErrorMessage = "Email address is required.")]
         [EmailAddress(ErrorMessage = "Please enter a valid email address.")]
@@ -34,7 +42,17 @@ namespace naboo_final_project.Pages
 
         public void OnGet()
         {
+            // Load WelcomeText from file
+            WelcomeText = System.IO.File.Exists(_welcomeTextFilePath)
+                ? System.IO.File.ReadAllText(_welcomeTextFilePath)
+                : "Welcome to WT Network";
 
+            // Load ImagePath from file
+            ImagePath = System.IO.File.Exists(_imagePathFilePath)
+                ? System.IO.File.ReadAllText(_imagePathFilePath)
+                : "/images/default.jpg";
+
+            TermsLink = "/TermsOfService"; // Placeholder for dynamic content
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -42,6 +60,11 @@ namespace naboo_final_project.Pages
             // Check if the model state is valid based on data annotations (Required, EmailAddress)
             if (!ModelState.IsValid)
             {
+                // Reload ImagePath to ensure it is available when returning the page
+                ImagePath = System.IO.File.Exists(_imagePathFilePath)
+                    ? System.IO.File.ReadAllText(_imagePathFilePath)
+                    : "/images/default.jpg";
+                
                 // If validation fails, return the same page with validation errors
                 return Page();
             }
@@ -64,6 +87,10 @@ namespace naboo_final_project.Pages
             else if (user.IsEmailConfirmed)
             {
                 // If user exists and email is already confirmed, we can redirect them to landing page
+                ImagePath = System.IO.File.Exists(_imagePathFilePath)
+                    ? System.IO.File.ReadAllText(_imagePathFilePath)
+                    : "/images/default.jpg";
+
                 ModelState.AddModelError(string.Empty, "This email address is already confirmed.");
                 return Page();
             }
@@ -83,11 +110,17 @@ namespace naboo_final_project.Pages
             {
                 await SendEmailConfirmationEmail(user.Email, user.UserId, user.EmailConfirmationToken);
                 // Redirect to a confirmation message page after sending the email
-                return RedirectToPage("/RegistrationConfirmation", new { email = UserEmail }); 
+                return RedirectToPage("/RegistrationConfirmation", new { email = UserEmail });
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error sending email confirmation email to {Email}", user.Email);
+                
+                // Reload ImagePath in case of an error
+                ImagePath = System.IO.File.Exists(_imagePathFilePath)
+                    ? System.IO.File.ReadAllText(_imagePathFilePath)
+                    : "/images/default.jpg";
+
                 ModelState.AddModelError(string.Empty, "Error sending confirmation email. Please try again later.");
                 return Page();
             }
@@ -96,7 +129,6 @@ namespace naboo_final_project.Pages
         private async Task SendEmailConfirmationEmail(string email, int userId, string token)
         {
             // Construct the validation link.
-            // We'll create a new Razor Page named "EmailConfirmation" to handle this link.
             var validationLink = Url.PageLink(
                 pageName: "/EmailConfirmation", // The Razor Page that will handle the confirmation
                 values: new { userId = userId, token = token }, // Pass userId and token as query parameters

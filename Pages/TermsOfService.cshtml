@@ -1,19 +1,27 @@
 @page
-@model NabooFinalProject.Pages.TermsOfServiceModel
+@model naboo_final_project.Pages.TermsOfServiceModel
 @{
     ViewData["Title"] = "Terms of Service";
+    var termsLines = Model.TermsContent.Split('\n'); // Split content into lines
 }
 
 <div class="login-container">
     <div class="login-box">
         <div class="logo-container">
-            <img src="/images/WT-logo.jpg" alt="WT Logo" class="logo">
+            <img src="@Model.ImagePath" alt="WT Logo" class="logo">
         </div>
         <h1 class="welcome-text">Terms of Service</h1>
         <div class="login-card">
             <div class="card-body">
                 <div class="terms-container">
-                    <p>@Model.TermsContent</p>
+                    <p>@termsLines[0]</p> <!-- Display the introductory line -->
+                    <ol>
+                        @for (int i = 1; i < termsLines.Length - 1; i++) // Render all but the last line as list items
+                        {
+                            <li>@termsLines[i].Substring(termsLines[i].IndexOf(' ') + 1)</li> <!-- Remove the leading number -->
+                        }
+                    </ol>
+                    <p>@termsLines[^1]</p> <!-- Display the last line as a separate paragraph -->
                 </div>
                 <form method="get" action="/Index">
                     <button type="submit" class="login-button">Continue</button>

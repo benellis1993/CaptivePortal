@@ -3,7 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using NabooFinalProject.Models;
+using naboo_final_project.Models;
 
 #nullable disable
 
@@ -16,6 +16,39 @@ namespace naboo_final_project.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.4");
+
+            modelBuilder.Entity("NabooFinalProject.Models.AdminUser", b =>
+                {
+                    b.Property<int>("AdminUserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("AdminUserId");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("CreatedAt");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("Email");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("PasswordHash");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT")
+                        .HasDefaultValue("Admin")
+                        .HasColumnName("Role");
+
+                    b.HasKey("AdminUserId");
+
+                    b.ToTable("AdminUsers");
+                });
 
             modelBuilder.Entity("NabooFinalProject.Models.User", b =>
                 {
