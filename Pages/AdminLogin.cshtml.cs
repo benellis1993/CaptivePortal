@@ -57,7 +57,7 @@ public class AdminLoginModel : PageModel
 
         await HttpContext.SignInAsync("CookieAuth", principal);
 
-        // Redirect to the EditIndex page after successful login
-        return RedirectToPage("/Admin/EditIndex");
+        // Redirect to the AdminDashboard page after successful login
+        return RedirectToPage("/Admin/AdminDashboard");
     }
 }

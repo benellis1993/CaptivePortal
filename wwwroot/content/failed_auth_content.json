@@ -1,0 +1,8 @@
+{
+  "Title": "Access Denied",
+  "HeaderText": "Access Denied",
+  "MainContent": "You do not have permission to access this page.",
+  "ImagePath": "/images/access-denied.jpg",
+  "TermsLink": "/TermsOfService",
+  "TermsContent": "Please review our Terms of Service for more information."
+}
