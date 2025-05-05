@@ -1,0 +1,65 @@
+@page
+@model naboo_final_project.Pages.Admin.EditAdvertsModel
+@{
+    ViewData["Title"] = "Edit Advertisements"; // Sets the page title
+}
+
+<h1>Edit Advertisements</h1>
+
+<!-- Form for adding a new advertisement -->
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="advertTitle">Advertisement Title</label>
+        <input id="advertTitle" name="AdvertTitle" class="form-control" type="text" value="@Model.AdvertTitle" required />
+    </div>
+    <div class="form-group">
+        <label for="advertImage">Upload Advertisement Image</label>
+        <input id="advertImage" name="AdvertImage" class="form-control" type="file" accept="image/*" />
+        <small class="form-text text-muted">Choose an image file for the advertisement.</small>
+    </div>
+    <div class="form-group">
+        <label for="advertLink">Advertisement Link</label>
+        <input id="advertLink" name="AdvertLink" class="form-control" type="url" value="@Model.AdvertLink" required />
+    </div>
+    <div class="form-group">
+        <label for="displayLocation">Display Location</label>
+        <select id="displayLocation" name="DisplayLocation" class="form-control" required>
+            <option value="1" selected="@(Model.DisplayLocation == 1)">Program 1</option>
+            <option value="2" selected="@(Model.DisplayLocation == 2)">Program 2</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Save Advertisement</button>
+</form>
+
+<!-- Table displaying existing advertisements -->
+<h2>Existing Advertisements</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Image</th>
+            <th>Link</th>
+            <th>Location</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var advert in Model.Adverts)
+        {
+            <tr>
+                <td>@advert.Title</td>
+                <td><img src="@advert.ImagePath" alt="@advert.Title" style="max-height: 50px;" /></td>
+                <td><a href="@advert.Link" target="_blank">@advert.Link</a></td>
+                <td>@advert.Location</td>
+                <td>
+                    <!-- Form for deleting an advertisement -->
+                    <form method="post" asp-page-handler="Delete" asp-route-id="@advert.Id" style="display:inline;">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                    <!-- Link to edit an advertisement -->
+                    <a asp-page="./EditSingleAdvert" asp-route-id="@advert.Id" class="btn btn-warning">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

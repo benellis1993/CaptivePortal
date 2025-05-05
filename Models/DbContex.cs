@@ -6,6 +6,7 @@ namespace naboo_final_project.Models
     {
         public DbSet<User> Users { get; set; }
         public DbSet<AdminUser> AdminUsers { get; set; } // Add DbSet for AdminUser
+        public DbSet<Advert> Adverts { get; set; }
 
         public UsersDbContext(DbContextOptions<UsersDbContext> options) : base(options)
         {

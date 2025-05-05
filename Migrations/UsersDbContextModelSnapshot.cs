@@ -17,7 +17,7 @@ namespace naboo_final_project.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.4");
 
-            modelBuilder.Entity("NabooFinalProject.Models.AdminUser", b =>
+            modelBuilder.Entity("naboo_final_project.Models.AdminUser", b =>
                 {
                     b.Property<int>("AdminUserId")
                         .ValueGeneratedOnAdd()
@@ -50,7 +50,40 @@ namespace naboo_final_project.Migrations
                     b.ToTable("AdminUsers");
                 });
 
-            modelBuilder.Entity("NabooFinalProject.Models.User", b =>
+            modelBuilder.Entity("naboo_final_project.Models.Advert", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Link")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Location")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Adverts");
+                });
+
+            modelBuilder.Entity("naboo_final_project.Models.User", b =>
                 {
                     b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
