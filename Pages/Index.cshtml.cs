@@ -144,12 +144,34 @@ namespace naboo_final_project.Pages
 
             var mailMessage = new MailMessage
             {
-                From = new MailAddress(_configuration["SmtpSettings:SenderEmail"], _configuration["SmtpSettings:SenderName"]),
-                Subject = "Confirm your email address for WT Network",
-                Body = $"Please confirm your email address by clicking this link: <a href='{HtmlEncoder.Default.Encode(validationLink)}'>Confirm Email</a>",
-                IsBodyHtml = true,
+                From = new MailAddress(
+                    _configuration["SmtpSettings:SenderEmail"], 
+                    _configuration["SmtpSettings:SenderName"]
+                ),
+                Subject = "Welcome to WT Network – Confirm Your Email Address",
+                Body = $@"
+                    <html>
+                        <body style='font-family: Arial, sans-serif; line-height: 1.6;'>
+                        <img src='https://www.wtamu.edu/webres/Image/Site%20Pictures/News/graphic_standards_2015fall/SPIRIT-StackedLogoNEW.png' 
+                            alt='WTAMU Logo' style='max-width: 200px; margin-bottom: 20px;' />
+                            <h2 style='color: #642032;'>Welcome to WT Network</h2>
+                            <p>Thank you for connecting to WT Network!</p>
+                            <p>To complete your registration and activate your network access, please confirm your email address by clicking the button below:</p>
+                            <p style='text-align: center; margin: 30px 0;'>
+                                <a href='{HtmlEncoder.Default.Encode(validationLink)}' 
+                                style='background-color: #642032; color: white; padding: 12px 20px; text-decoration: none; border-radius: 5px;'>
+                                    Confirm Email
+                                </a>
+                            </p>
+                            <p>If you did not try to connect to WT Network, you can safely ignore this email.</p>
+                            <p style='font-size: 12px; color: #666;'>This email was sent by WT Network, a service managed by West Texas A&M University IT Services.</p>
+                        </body>
+                    </html>",
+                IsBodyHtml = true
             };
+
             mailMessage.To.Add(email);
+
 
             await smtpClient.SendMailAsync(mailMessage);
         }
