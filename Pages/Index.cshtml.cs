@@ -86,14 +86,19 @@ namespace naboo_final_project.Pages
             }
             else if (user.IsEmailConfirmed)
             {
-                // If user exists and email is already confirmed, we can redirect them to landing page
-                ImagePath = System.IO.File.Exists(_imagePathFilePath)
-                    ? System.IO.File.ReadAllText(_imagePathFilePath)
-                    : "/images/default.jpg";
+                // ✅ Set cookie so future visits also redirect
+                HttpContext.Response.Cookies.Append("WTEmailConfirmed", "true", new CookieOptions
+                {
+                    Expires = DateTimeOffset.UtcNow.AddDays(1),
+                    IsEssential = true,
+                    Secure = true,
+                    SameSite = SameSiteMode.Strict
+                });
 
-                ModelState.AddModelError(string.Empty, "This email address is already confirmed.");
-                return Page();
+                _logger.LogInformation("User {Email} is already confirmed. Redirecting to AdvertLandingPage.", user.Email);
+                return RedirectToPage("/AdvertLandingPage");
             }
+
 
             // If user exists but email is not confirmed, or if it's a new user, proceed with sending confirmation email
 
