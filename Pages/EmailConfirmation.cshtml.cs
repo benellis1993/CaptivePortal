@@ -51,14 +51,27 @@ namespace naboo_final_project.Pages
             if (user.EmailConfirmationToken == token && user.EmailConfirmationTokenExpires > DateTime.UtcNow)
             {
                 user.IsEmailConfirmed = true;
-                user.EmailConfirmationToken = null; // Clear the token after use
-                user.EmailConfirmationTokenExpires = null; // Clear the expiration after use
+                user.EmailConfirmationToken = null;
+                user.EmailConfirmationTokenExpires = null;
 
                 await _context.SaveChangesAsync();
 
+                // ✅ Set a cookie to remember that the user has confirmed
+                HttpContext.Response.Cookies.Append("WTEmailConfirmed", "true", new CookieOptions
+                {
+                    Expires = DateTimeOffset.UtcNow.AddDays(1),
+                    IsEssential = true,
+                    Secure = true,
+                    SameSite = SameSiteMode.Strict
+                });
+
                 Message = "Thank you for confirming your email address!";
                 _logger.LogInformation("Email confirmed successfully for user ID: {UserId}", userId);
+
+                // ✅ Optional: redirect them immediately
+                return RedirectToPage("/AdvertLandingPage");
             }
+
             else
             {
                 // Handle invalid or expired token
