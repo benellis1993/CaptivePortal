@@ -44,7 +44,7 @@ namespace naboo_final_project.Pages
             {
                 Message = "Email address has already been confirmed.";
                  _logger.LogInformation("Email for user ID {UserId} already confirmed.", userId);
-                return Page();
+                return RedirectToPage("/AdvertLandingPage");
             }
 
             // Verify the token and expiration
