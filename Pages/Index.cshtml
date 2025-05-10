@@ -25,6 +25,7 @@
                     <div class="form-group">
                         <label asp-for="UserEmail">Email Address</label>
                         <input type="email"
+                                 id="UserEmail"
                                class="form-control"
                                placeholder="Enter your email address"
                                title="Please enter a valid email address"
@@ -33,6 +34,7 @@
 
                         <small class="form-text">Enter your email address to connect</small>
                         <span asp-validation-for="UserEmail" class="text-danger"></span>
+                        <span id=" email-error" class="text-danger"></span>
                     </div>
                     <div class="form-group terms-checkbox">
                         <label class="checkbox-container">
@@ -57,8 +59,8 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-
-    <script>
+    <script src="~/js/validation.js"></script>
+    @*<script>
         document.addEventListener('DOMContentLoaded', function () {
             const termsCheckbox = document.getElementById('termsCheckbox');
             const connectButton = document.getElementById('connectButton');
@@ -97,5 +99,5 @@
                 button.setAttribute('title', 'Accept Terms of Service to continue.');
             }
         });
-    });
+    });*@}
 </script>
