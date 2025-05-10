@@ -59,45 +59,5 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script src="~/js/validation.js"></script>
-    @*<script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const termsCheckbox = document.getElementById('termsCheckbox');
-            const connectButton = document.getElementById('connectButton');
-
-            // Initial check in case the page is cached with the checkbox checked
-            connectButton.disabled = !termsCheckbox.checked;
-             if (termsCheckbox.checked) {
-                connectButton.removeAttribute('title');
-            } else {
-                 connectButton.setAttribute('title', 'Accept Terms of Service to continue.');
-            }
-
-
-            termsCheckbox.addEventListener('change', function () {
-                connectButton.disabled = !this.checked;
-                if (this.checked) {
-                    connectButton.removeAttribute('title');
-                } else {
-                    connectButton.setAttribute('title', 'Accept Terms of Service to continue.');
-                }
-            });
-        });
-    </script>
-}
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var checkbox = document.getElementById('termsCheckbox');
-        var button = document.getElementById('connectButton');
-
-        checkbox.addEventListener('change', function() {
-            button.disabled = !checkbox.checked;
-            if (checkbox.checked) {
-                button.removeAttribute('title');
-            } else {
-                button.setAttribute('title', 'Accept Terms of Service to continue.');
-            }
-        });
-    });*@}
+    <script src="~/js/validation.js"></script>}
 </script>
