@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using naboo_final_project.Models; 
+using naboo_final_project.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -66,16 +66,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-app.UseResponseCaching();
-app.Use(async (context, next) =>
-{
-    context.Response.GetTypedHeaders().CacheControl = new Microsoft.Net.Http.Headers.CacheControlHeaderValue
-    {
-        Public = true,
-        MaxAge = TimeSpan.FromSeconds(60) // Cache for 60 seconds
-    };
-    await next();
-});
+
 app.UseRouting();
 
 // Add Authentication and Authorization middleware

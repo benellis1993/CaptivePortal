@@ -16,7 +16,7 @@ public class EditIndexModel : PageModel
     public string TermsContent { get; set; } = string.Empty;
 
     [BindProperty]
-    public IFormFile UploadedImage { get; set; } // For handling the uploaded image
+    public IFormFile? UploadedImage { get; set; } // For handling the uploaded image
 
     private readonly string _welcomeTextFilePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "WelcomeText.txt");
     private readonly string _termsFilePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "TermsOfService.txt");

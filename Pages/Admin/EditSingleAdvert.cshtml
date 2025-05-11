@@ -32,9 +32,9 @@
                 <div class="form-group mb-3">
                     <label for="displayLocation">Display Location</label>
                     <select id="displayLocation" name="DisplayLocation" class="form-control" required>
-                        <option value="0" selected="@(Model.DisplayLocation == 0 ? "selected" : "")">Not Active</option>
-                        <option value="1" selected="@(Model.DisplayLocation == 1 ? "selected" : "")">Program 1</option>
-                        <option value="2" selected="@(Model.DisplayLocation == 2 ? "selected" : "")">Program 2</option>
+                        <option value="0" selected="@(Model.DisplayLocation == 0)">Not Active</option>
+                        <option value="1" selected="@(Model.DisplayLocation == 1)">Program 1</option>
+                        <option value="2" selected="@(Model.DisplayLocation == 2)">Program 2</option>
                     </select>
                     <span asp-validation-for="DisplayLocation" class="text-danger"></span>
                 </div>
