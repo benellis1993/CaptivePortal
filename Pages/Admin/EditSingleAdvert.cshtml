@@ -1,34 +1,53 @@
 @page "{id:int}"
 @model naboo_final_project.Pages.Admin.EditSingleAdvertModel
 @{
-    ViewData["Title"] = "Edit Advertisement"; // Sets the page title
+    ViewData["Title"] = "Edit Advertisement";
 }
 
-<h1>Edit Advertisement</h1>
+<div class="container mt-4">
+    <h1>Edit Advertisement</h1>
+    <div class="card">
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="All" class="text-danger"></div>
 
-<!-- Form for editing an existing advertisement -->
-<form method="post" enctype="multipart/form-data">
-    <div class="form-group">
-        <label for="advertTitle">Advertisement Title</label>
-        <input id="advertTitle" name="AdvertTitle" class="form-control" type="text" value="@Model.AdvertTitle" required />
+                <div class="form-group mb-3">
+                    <label for="advertTitle">Advertisement Title</label>
+                    <input id="advertTitle" name="AdvertTitle" class="form-control" type="text" value="@Model.AdvertTitle" required />
+                    <span asp-validation-for="AdvertTitle" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="advertImage">Upload Advertisement Image</label>
+                    <input id="advertImage" name="AdvertImage" class="form-control" type="file" accept="image/*" />
+                    <small class="form-text text-muted">Leave blank to keep the current image.</small>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="advertLink">Advertisement Link</label>
+                    <input id="advertLink" name="AdvertLink" class="form-control" type="url" value="@Model.AdvertLink" required />
+                    <span asp-validation-for="AdvertLink" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="displayLocation">Display Location</label>
+                    <select id="displayLocation" name="DisplayLocation" class="form-control" required>
+                        <option value="0" selected="@(Model.DisplayLocation == 0 ? "selected" : "")">Not Active</option>
+                        <option value="1" selected="@(Model.DisplayLocation == 1 ? "selected" : "")">Program 1</option>
+                        <option value="2" selected="@(Model.DisplayLocation == 2 ? "selected" : "")">Program 2</option>
+                    </select>
+                    <span asp-validation-for="DisplayLocation" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <a asp-page="/Admin/EditAdverts" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="form-group">
-        <label for="advertImage">Upload Advertisement Image</label>
-        <input id="advertImage" name="AdvertImage" class="form-control" type="file" accept="image/*" />
-        <small class="form-text text-muted">Leave blank to keep the current image.</small>
-    </div>
-    <div class="form-group">
-        <label for="advertLink">Advertisement Link</label>
-        <input id="advertLink" name="AdvertLink" class="form-control" type="url" value="@Model.AdvertLink" required />
-    </div>
-    <div class="form-group">
-        <label for="displayLocation">Display Location</label>
-        <select id="displayLocation" name="DisplayLocation" class="form-control" required>
-            <option value="0" selected="@(Model.DisplayLocation == 0)">Not Active</option>
-            <option value="1" selected="@(Model.DisplayLocation == 1)">Program 1</option>
-            <option value="2" selected="@(Model.DisplayLocation == 2)">Program 2</option>
-        </select>
-    </div>
-    <button type="submit" class="btn btn-primary">Save Changes</button>
-    <a asp-page="./EditAdverts" class="btn btn-secondary">Cancel</a>
-</form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
