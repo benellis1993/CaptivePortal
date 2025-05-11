@@ -159,12 +159,12 @@ namespace naboo_final_project.Pages
                         <body style='font-family: Arial, sans-serif; line-height: 1.6;'>
                         <img src='https://www.wtamu.edu/webres/Image/Site%20Pictures/News/graphic_standards_2015fall/SPIRIT-StackedLogoNEW.png' 
                             alt='WTAMU Logo' style='max-width: 200px; margin-bottom: 20px;' />
-                            <h2 style='color: #642032;'>Welcome to WT Network</h2>
+                            <h2 style='color: #450012;'>Welcome to WT Network</h2>
                             <p>Thank you for connecting to WT Network!</p>
                             <p>To complete your registration and activate your network access, please confirm your email address by clicking the button below:</p>
                             <p style='text-align: center; margin: 30px 0;'>
                                 <a href='{HtmlEncoder.Default.Encode(validationLink)}' 
-                                style='background-color: #642032; color: white; padding: 12px 20px; text-decoration: none; border-radius: 5px;'>
+                                style='background-color: #450012; color: white; padding: 12px 20px; text-decoration: none; border-radius: 5px;'>
                                     Confirm Email
                                 </a>
                             </p>

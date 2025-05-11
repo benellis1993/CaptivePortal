@@ -1,5 +1,5 @@
 :root {
-    --maroon: #642032;
+    --maroon: #450012;
     --maroon-light: #7A2A3F;
     --white: #fff;
     --gray-light: #f5f5f5;
@@ -269,6 +269,19 @@ html, body {
 }
 .advert-details .btn:hover {
     background-color: var(--maroon-light);
+}
+
+.welcome-banner {
+    text-align: center;
+    padding: 40px 20px 20px;
+    background: transparent;
+}
+
+.welcome-banner .welcome-text {
+    color: white;
+    font-size: 28px;
+    margin-bottom: 10px;
+    font-weight: 600;
 }
 
 /* ===== Responsive Styles ===== */

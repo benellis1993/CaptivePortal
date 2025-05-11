@@ -35,7 +35,7 @@ namespace naboo_final_project.Pages
             if (user == null)
             {
                 Message = "User not found.";
-                _logger.LogWarning("Email confirmation attempt for non-existent user ID: {UserId}", userId);
+                _logger.LogWarning("Email confirmation attempt for non-existent user ID: {UserId}.", userId);
                 return Page();
             }
 
@@ -66,7 +66,7 @@ namespace naboo_final_project.Pages
                 });
 
                 Message = "Thank you for confirming your email address!";
-                _logger.LogInformation("Email confirmed successfully for user ID: {UserId}", userId);
+                _logger.LogInformation("Email confirmed successfully for user ID: {UserId}.", userId);
 
                 // ✅ Optional: redirect them immediately
                 return RedirectToPage("/AdvertLandingPage");

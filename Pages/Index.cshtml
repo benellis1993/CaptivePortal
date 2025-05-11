@@ -16,7 +16,7 @@
         <div class="login-card">
             <div class="card-header">
                 <h2>Network Access</h2>
-                <p>Please enter your email to connect</p>
+                <p>Please enter your email to connect.</p>
             </div>
             <div class="card-body">
                 <form class="login-form" method="post">
@@ -28,11 +28,11 @@
                                  id="UserEmail"
                                class="form-control"
                                placeholder="Enter your email address"
-                               title="Please enter a valid email address"
+                               title="Please enter a valid email address."
                                required {# HTML5 required attribute for basic client-side check #}
                                asp-for="UserEmail">
 
-                        <small class="form-text">Enter your email address to connect</small>
+                        <small class="form-text">Enter your email address to connect.</small>
                         <span asp-validation-for="UserEmail" class="text-danger"></span>
                         <span id=" email-error" class="text-danger"></span>
                     </div>
@@ -40,7 +40,7 @@
                         <label class="checkbox-container">
                             <input type="checkbox" id="termsCheckbox" required>
                             <span class="checkmark"></span>
-                            <span class="checkbox-text">I accept the Terms of Service</span>
+                            <span class="checkbox-text">I accept the Terms of Service.</span>
                         </label>
                         <small class="form-text">
                             <a href="@Model.TermsLink" class="terms-link" target="_blank">Read our Terms of Service</a>
@@ -52,7 +52,7 @@
         </div>
         <div class="footer-text">
             <p>West Texas A&M University</p>
-            <p class="support-text">For technical support, please contact IT Services</p>
+            <p class="support-text">For technical support, please contact IT Services.</p>
         </div>
     </div>
 </div>
