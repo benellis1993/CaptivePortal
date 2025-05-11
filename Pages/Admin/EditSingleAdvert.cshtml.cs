@@ -87,6 +87,9 @@ public class EditSingleAdvertModel : PageModel
         _context.Adverts.Update(advert); // Save changes to the database
         await _context.SaveChangesAsync();
 
+        // Reload the entity to ensure the context has the latest data
+        await _context.Entry(advert).ReloadAsync();
+
         return RedirectToPage("./EditAdverts"); // Redirect to the advertisements list page
     }
 }

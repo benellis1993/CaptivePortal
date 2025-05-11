@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Authorization;
@@ -34,7 +35,14 @@ public class EditAdvertsModel : PageModel
 
     public void OnGet()
     {
+        Response.Headers["Cache-Control"] = "no-cache, no-store, must-revalidate";
+        Response.Headers["Pragma"] = "no-cache";
+        Response.Headers["Expires"] = "0";
+
         Adverts = _context.Adverts.ToList(); // Fetch all advertisements from the database
+
+        // Fetch fresh data from the database
+        Adverts = _context.Adverts.AsNoTracking().ToList();
     }
 
     public async Task<IActionResult> OnPostAsync()
