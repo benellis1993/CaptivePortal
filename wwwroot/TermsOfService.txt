@@ -3,3 +3,4 @@ Welcome to the West Texas A&M University public Wi-Fi network. By using this net
 2. The University is not responsible for any data loss or security breaches.
 3. Your activity may be monitored for security purposes.
 Please read these terms carefully before proceeding
+
